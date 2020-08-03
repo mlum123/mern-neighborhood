@@ -11,7 +11,6 @@ import {
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import { addNeed } from '../actions/needActions';
-import {v4 as uuid} from 'uuid';
 
 class NeedModal extends Component {
     state = {
@@ -33,7 +32,6 @@ class NeedModal extends Component {
         e.preventDefault();
         
         const newNeed = {
-            id: uuid(),
             name: this.state.name
         }
 
