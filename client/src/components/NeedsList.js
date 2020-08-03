@@ -2,19 +2,17 @@ import React, { Component } from 'react';
 import { Container, ListGroup, ListGroupItem, Button } from 'reactstrap';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import {v4 as uuid} from 'uuid';
+import { connect } from 'react-redux';
+import { getNeeds } from '../actions/needActions';
+import PropTypes from 'prop-types';
 
 class NeedsList extends Component {
-    state = {
-        needs: [
-            { id: uuid(), name: 'Grocery shopper' },
-            { id: uuid(), name: 'Dog walker' },
-            { id: uuid(), name: 'Yeast' },
-            { id: uuid(), name: 'Flour' }
-        ]
+    componentDidMount() {
+        this.props.getNeeds();
     }
-
+    
     render() {
-        const { needs } = this.state;
+        const { needs } = this.props.need;
         return(
             <Container>
                 <Button
@@ -58,4 +56,13 @@ class NeedsList extends Component {
     }
 }
 
-export default NeedsList;
+NeedsList.propTypes = {
+    getNeeds: PropTypes.func.isRequired,
+    need: PropTypes.object.isRequired
+}
+
+const mapStateToProps = (state) => ({
+    need: state.need
+});
+
+export default connect(mapStateToProps, { getNeeds })(NeedsList);
