@@ -1,4 +1,3 @@
-import {v4 as uuid} from 'uuid';
 import { GET_NEEDS, ADD_NEED, DELETE_NEED, NEEDS_LOADING } from '../actions/types';
 
 const initialState = {
