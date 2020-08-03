@@ -16,6 +16,16 @@ export default function(state = initialState, action) {
             return {
                 ...state
             }
+        case DELETE_NEED:
+            return {
+                ...state,
+                needs: state.needs.filter(need => need.id !== action.payload)
+            }
+        case ADD_NEED:
+            return {
+                ...state,
+                needs: [action.payload, ...state.needs]
+            }
         default:
             return state;
     }

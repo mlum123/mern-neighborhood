@@ -5,3 +5,17 @@ export const getNeeds = () => {
         type: GET_NEEDS
     };
 };
+
+export const deleteNeed = id => {
+    return {
+        type: DELETE_NEED,
+        payload: id
+    };
+};
+
+export const addNeed = need => {
+    return {
+        type: ADD_NEED,
+        payload: need
+    };
+};

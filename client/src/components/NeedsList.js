@@ -1,34 +1,23 @@
 import React, { Component } from 'react';
 import { Container, ListGroup, ListGroupItem, Button } from 'reactstrap';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import {v4 as uuid} from 'uuid';
 import { connect } from 'react-redux';
-import { getNeeds } from '../actions/needActions';
+import { getNeeds, deleteNeed } from '../actions/needActions';
 import PropTypes from 'prop-types';
 
 class NeedsList extends Component {
     componentDidMount() {
         this.props.getNeeds();
     }
-    
+
+    onDeleteClick = id => {
+        this.props.deleteNeed(id)
+    }
+
     render() {
         const { needs } = this.props.need;
         return(
             <Container>
-                <Button
-                    color="dark"
-                    style={{marginBottom: '2rem'}}
-                    onClick={() => {
-                        const name = prompt('Enter Need');
-                        if (name) {
-                            this.setState(state => ({
-                                needs: [...state.needs, { id: uuid(), name }]
-                            }))
-                        }
-                    }}
-                >
-                    Add Need
-                </Button>
                 <ListGroup>
                     <TransitionGroup className="needs-list">
                         {needs.map(({ id, name }) => (
@@ -38,11 +27,7 @@ class NeedsList extends Component {
                                         className="remove-btn"
                                         color="danger"
                                         size="sm"
-                                        onClick={() => {
-                                            this.setState(state => ({
-                                                needs: state.needs.filter(need => need.id !== id)
-                                            }));
-                                        }}
+                                        onClick={this.onDeleteClick.bind(this, id)}
                                     >&times; 
                                     </Button>
                                     {name}
@@ -65,4 +50,7 @@ const mapStateToProps = (state) => ({
     need: state.need
 });
 
-export default connect(mapStateToProps, { getNeeds })(NeedsList);
+export default connect(
+    mapStateToProps,
+    { getNeeds, deleteNeed }
+)(NeedsList);
