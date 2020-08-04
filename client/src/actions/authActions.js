@@ -28,16 +28,48 @@ export const loadUser = () => (dispatch, getState) => {
                 type: AUTH_ERROR
             })
         });
-}
+};
+
+// Register User
+export const register = ({ name, email, password, neighborhood }) => dispatch => {
+    // Headers
+    const config = {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }
+
+    // Register body
+    const body = JSON.stringify({ name, email, password, neighborhood });
+
+    axios.post('/api/users', body, config)
+        .then(res => dispatch({
+            type: REGISTER_SUCCESS,
+            payload: res.data
+        }))
+        .catch(err => {
+            dispatch(returnErrors(err.response.data, err.response.status, 'REGISTER_FAIL'));
+            dispatch({
+                type: REGISTER_FAIL
+            });
+        });
+};
+
+// Logout User
+export const logout = () => {
+    return {
+        type: LOGOUT_SUCCESS
+    };
+};
 
 // Setup config/headers and token
-export const tokenConfig = (getState) => {
+export const tokenConfig = getState => {
     // Get token from localStorage
     const token = getState().auth.token;
 
     // Headers
     const config = {
-        header: {
+        headers: {
             "Content-type": "application/json"
         }
     }

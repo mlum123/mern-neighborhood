@@ -24,7 +24,7 @@ const UserSchema = new Schema({
         type: Array,
         default: []
     },
-    requests: {
+    offers: {
         type: Array,
         default: []
     },
