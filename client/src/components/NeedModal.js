@@ -11,11 +11,16 @@ import {
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import { addNeed } from '../actions/needActions';
+import PropTypes from 'prop-types';
 
 class NeedModal extends Component {
     state = {
         modal: false,
         name: ''
+    }
+
+    static propTypes = {
+        isAuthenticated: PropTypes.bool
     }
 
     toggle = () => {
@@ -45,12 +50,13 @@ class NeedModal extends Component {
     render() {
         return (
             <div>
-                <Button
+                { this.props.isAuthenticated ? <Button
                     color="dark"
                     style={{marginBottom: '2rem'}}
                     onClick={this.toggle}
-                >Add Need</Button>
-
+                    >
+                        Add Need
+                    </Button> : <h4 className="mb-3 ml-4">Please log in to manage needs</h4>}
                 <Modal
                     isOpen={this.state.modal}
                     toggle={this.toggle}
@@ -82,7 +88,8 @@ class NeedModal extends Component {
 }
 
 const mapStateToProps = state => ({
-    need: state.need
+    need: state.need,
+    isAuthenticated: state.auth.isAuthenticated
 });
 
 export default connect(mapStateToProps, { addNeed })(NeedModal);

@@ -6,6 +6,12 @@ import { getNeeds, deleteNeed } from '../actions/needActions';
 import PropTypes from 'prop-types';
 
 class NeedsList extends Component {
+    static propTypes = {
+        getNeeds: PropTypes.func.isRequired,
+        need: PropTypes.object.isRequired,
+        isAuthenticated: PropTypes.bool
+    }
+
     componentDidMount() {
         this.props.getNeeds();
     }
@@ -23,13 +29,13 @@ class NeedsList extends Component {
                         {needs.map(({ _id, name }) => (
                             <CSSTransition key={_id} timeout={500} classNames="fade">
                                 <ListGroupItem>
-                                    <Button
+                                    { this.props.isAuthenticated ? <Button
                                         className="remove-btn"
                                         color="danger"
                                         size="sm"
                                         onClick={this.onDeleteClick.bind(this, _id)}
-                                    >&times; 
-                                    </Button>
+                                        >&times; 
+                                        </Button> : null}
                                     {name}
                                 </ListGroupItem>
                             </CSSTransition>
@@ -41,13 +47,9 @@ class NeedsList extends Component {
     }
 }
 
-NeedsList.propTypes = {
-    getNeeds: PropTypes.func.isRequired,
-    need: PropTypes.object.isRequired
-}
-
 const mapStateToProps = (state) => ({
-    need: state.need
+    need: state.need,
+    isAuthenticated: state.auth.isAuthenticated
 });
 
 export default connect(
