@@ -56,7 +56,7 @@ class NeedModal extends Component {
                     onClick={this.toggle}
                     >
                         Add Need
-                    </Button> : <h4 className="mb-3 ml-4">Please log in to manage needs</h4>}
+                    </Button> : <h3 className="mb-3 ml-4"><span id="welcome">welcome to our</span><br></br> <span id="neighborhood">neighborhood</span></h3> }
                 <Modal
                     isOpen={this.state.modal}
                     toggle={this.toggle}

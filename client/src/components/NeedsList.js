@@ -24,6 +24,7 @@ class NeedsList extends Component {
         const { needs } = this.props.need;
         return(
             <Container>
+                { this.props.isAuthenticated ? <h4>What Your Neighbors Need</h4> : null }
                 <ListGroup>
                     <TransitionGroup className="needs-list">
                         {needs.map(({ _id, name }) => (

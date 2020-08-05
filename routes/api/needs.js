@@ -8,8 +8,8 @@ const { restart } = require('nodemon');
 
 // @route  GET api/needs
 // @desc   Get All Needs
-// @access Public
-router.get('/', (req, res) => {
+// @access Private
+router.get('/', auth, (req, res) => {
     Need.find()
         .sort({ date: -1 })
         .then(needs => res.json(needs))

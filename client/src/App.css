@@ -40,10 +40,12 @@ Default App.css
   }
 }
 */
+/* delete button styling */
 .remove-btn {
   margin-right: 0.5rem;
 }
 
+/* fade styling for when adding / deleting needs or offers */
 .fade-enter {
   opacity: 0.01;
 }
@@ -60,4 +62,20 @@ Default App.css
 .fade-exit-active {
   opacity: 0.01;
   transition: opacity 1000ms ease-in;
+}
+
+/* styling for home page welcome and neighborhood */
+#welcome {
+  color: #759EB8;
+  font-size: 50px;
+}
+
+#neighborhood {
+  color: #5C677D;
+  font-size: 80px;
+}
+
+/* navbar styling */
+#navbar {
+  background-color: #759EB8;
 }
