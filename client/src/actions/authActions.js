@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { returnErrors } from './errorActions';
+import { setNeedsLoading } from './needActions';
 
 import {
     USER_LOADED,
@@ -9,7 +10,8 @@ import {
     LOGIN_FAIL,
     LOGOUT_SUCCESS,
     REGISTER_SUCCESS,
-    REGISTER_FAIL
+    REGISTER_FAIL,
+    GET_USER_NEEDS
 } from "./types";
 
 // Check token & load user
@@ -21,6 +23,23 @@ export const loadUser = () => (dispatch, getState) => {
         .then(res => dispatch({
             type: USER_LOADED,
             payload: res.data
+        }))
+        .catch(err => {
+            dispatch(returnErrors(err.response.data, err.response.status));
+            dispatch({
+                type: AUTH_ERROR
+            })
+        });
+};
+
+// Check token & get user needs
+export const getUserNeeds = () => (dispatch, getState) => {
+    dispatch(setNeedsLoading());
+
+    axios.get('/api/auth/user/needs', tokenConfig(getState))
+        .then(res => dispatch({
+            type: GET_USER_NEEDS,
+            payload: res.data.needs,
         }))
         .catch(err => {
             dispatch(returnErrors(err.response.data, err.response.status));

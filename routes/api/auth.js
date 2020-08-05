@@ -58,4 +58,13 @@ router.get('/user', auth, (req, res) => {
         .then(user => res.json(user))
 })
 
+// @route  GET api/auth/user/needs
+// @desc   Get user needs
+// @access Private
+router.get('/user/needs', auth, (req, res) => {
+    User.findById(req.user.id)
+        .select('needs')
+        .then(user => res.json(user))
+})
+
 module.exports = router;
