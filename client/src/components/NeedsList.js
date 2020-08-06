@@ -35,6 +35,23 @@ class NeedsList extends Component {
                         {needs.filter(need => need.userId != user._id).map(({ _id, name }) => (
                             <CSSTransition key={_id} timeout={500} classNames="fade">
                                 <ListGroupItem>
+                                    {name}
+                                </ListGroupItem>
+                            </CSSTransition>
+                        ))}
+                    </TransitionGroup>
+                </ListGroup>
+                </div> : null }
+                
+                <br>
+                </br>
+                { this.props.isAuthenticated ? <div>
+                    <h4>Manage Your Needs</h4>
+                    <ListGroup>
+                    <TransitionGroup className="needs-list">
+                        {needs.filter(need => need.userId == user._id).map(({ _id, name }) => (
+                            <CSSTransition key={_id} timeout={500} classNames="fade">
+                                <ListGroupItem>
                                     <Button
                                         className="remove-btn"
                                         color="danger"
@@ -45,7 +62,6 @@ class NeedsList extends Component {
                                 </ListGroupItem>
                             </CSSTransition>
                         ))}
-                        { console.log(needs) }
                     </TransitionGroup>
                 </ListGroup>
                 </div> : null }
