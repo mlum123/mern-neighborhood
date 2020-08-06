@@ -10,7 +10,7 @@ export default function(state = initialState, action) {
     switch(action.type) {
         case GET_NEEDS:
             return {
-                ...state,
+                ...state.state,
                 needs: action.payload,
                 loading: false
             }

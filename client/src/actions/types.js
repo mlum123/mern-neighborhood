@@ -12,5 +12,3 @@ export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 export const REGISTER_FAIL = 'REGISTER_FAIL';
 export const GET_ERRORS = 'GET_ERRORS';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
-export const GET_USER_NEEDS = 'GET_USER_NEEDS';
-export const ADD_USER_NEED = 'ADD_USER_NEED';

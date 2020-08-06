@@ -3,21 +3,17 @@ import { Container, ListGroup, ListGroupItem, Button } from 'reactstrap';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { connect } from 'react-redux';
 import { getNeeds, deleteNeed } from '../actions/needActions';
-import { getUserNeeds } from '../actions/authActions';
 import PropTypes from 'prop-types';
 
 class NeedsList extends Component {
     static propTypes = {
         getNeeds: PropTypes.func.isRequired,
         need: PropTypes.object.isRequired,
-        isAuthenticated: PropTypes.bool,
-        getUserNeeds: PropTypes.func.isRequired,
-        needs: PropTypes.array.isRequired
+        isAuthenticated: PropTypes.bool
     }
 
     componentDidMount() {
         this.props.getNeeds();
-        this.props.getUserNeeds();
     }
 
     onDeleteClick = id => {
@@ -26,7 +22,6 @@ class NeedsList extends Component {
 
     render() {
         const { needs } = this.props.need;
-        const userNeeds = this.props.needs;
         return(
             <Container>
                 { this.props.isAuthenticated ? <h4>What Your Neighbors Need</h4> : null }
@@ -59,5 +54,5 @@ const mapStateToProps = (state) => ({
 
 export default connect(
     mapStateToProps,
-    { getNeeds, deleteNeed, getUserNeeds }
+    { getNeeds, deleteNeed }
 )(NeedsList);
