@@ -20,7 +20,8 @@ router.get('/', auth, (req, res) => {
 // @access Private
 router.post('/', auth, (req, res) => {
     const newNeed = new Need({
-        name: req.body.name
+        name: req.body.name,
+        userId: req.body.userId
     });
 
     newNeed.save().then(need => res.json(need));

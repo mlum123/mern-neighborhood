@@ -1,4 +1,4 @@
-import { GET_NEEDS, ADD_NEED, DELETE_NEED, NEEDS_LOADING } from './types';
+import { GET_NEEDS, ADD_NEED, DELETE_NEED, NEEDS_LOADING, ADD_USER_NEED } from './types';
 import axios from 'axios';
 import { tokenConfig } from './authActions';
 import { returnErrors } from './errorActions';
@@ -33,12 +33,18 @@ export const addNeed = need => (dispatch, getState) => {
     
     // post new need to needs property of this user
     axios
-        .post('/api/user/needs', need, tokenConfig(getState))
-        .then(res =>
+        .post('/api/auth/user/needs', need, tokenConfig(getState))
+        .then(res => {
+            console.log(getState().user)
+            const user = getState().user;
+
+            console.log(res);
+
             dispatch({
-                type: ADD_NEED,
-                payload: res.data
-            }))
+                type: ADD_USER_NEED,
+                user: user,
+                payload: res
+            })})
             .catch(err =>
                 dispatch(returnErrors(err.response.data, err.response.status))
             );
