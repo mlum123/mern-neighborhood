@@ -57,3 +57,5 @@ router.get('/user', auth, (req, res) => {
         .select('-password')
         .then(user => res.json(user))
 });
+
+module.exports = router;

@@ -11,7 +11,10 @@ const NeedSchema = new Schema({
         type: Date,
         default: Date.now
     },
-    userId: { type: Schema.Types.ObjectId, ref: 'User' }
+    userId: {
+        type: String,
+        required: true
+    }
 });
 
 module.exports = Need = mongoose.model('need', NeedSchema);

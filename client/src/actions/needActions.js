@@ -30,24 +30,6 @@ export const addNeed = need => (dispatch, getState) => {
             .catch(err =>
                 dispatch(returnErrors(err.response.data, err.response.status))
             );
-    
-    // post new need to needs property of this user
-    axios
-        .post('/api/auth/user/needs', need, tokenConfig(getState))
-        .then(res => {
-            console.log(getState().user)
-            const user = getState().user;
-
-            console.log(res);
-
-            dispatch({
-                type: ADD_USER_NEED,
-                user: user,
-                payload: res
-            })})
-            .catch(err =>
-                dispatch(returnErrors(err.response.data, err.response.status))
-            );
 };
 
 export const deleteNeed = id => (dispatch, getState) => {
