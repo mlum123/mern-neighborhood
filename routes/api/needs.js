@@ -11,10 +11,10 @@ const { restart } = require('nodemon');
 const User = require('../../models/User');
 
 // @route  GET api/needs
-// @desc   Get All Users' Needs
+// @desc   Get All Users' Needs Except Current User's
 // @access Private
 router.get('/', auth, (req, res) => {
-    Need.find()
+    Need.find({ userId: { $ne: req.user.id }})
         .sort({ date: -1 })
         .then(needs => res.json(needs))
 });
