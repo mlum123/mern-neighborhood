@@ -9,11 +9,14 @@ class NeedsList extends Component {
     static propTypes = {
         getNeeds: PropTypes.func.isRequired,
         need: PropTypes.object.isRequired,
+        auth: PropTypes.object.isRequired,
+        isLoading: PropTypes.bool,
         isAuthenticated: PropTypes.bool
     }
 
     componentDidMount() {
         this.props.getNeeds();
+        console.log(this.props.auth);
     }
 
     onDeleteClick = id => {
@@ -22,13 +25,14 @@ class NeedsList extends Component {
 
     render() {
         const { needs } = this.props.need;
-        return(
+        const { user } = this.props.auth;
+        return (
             <Container>
                 { this.props.isAuthenticated ? <div>
                     <h4>What Your Neighbors Need</h4>
                     <ListGroup>
                     <TransitionGroup className="needs-list">
-                        {needs.map(({ _id, name }) => (
+                        {needs.filter(need => need.userId != user._id).map(({ _id, name }) => (
                             <CSSTransition key={_id} timeout={500} classNames="fade">
                                 <ListGroupItem>
                                     <Button
@@ -41,6 +45,7 @@ class NeedsList extends Component {
                                 </ListGroupItem>
                             </CSSTransition>
                         ))}
+                        { console.log(needs) }
                     </TransitionGroup>
                 </ListGroup>
                 </div> : null }
@@ -51,6 +56,8 @@ class NeedsList extends Component {
 
 const mapStateToProps = (state) => ({
     need: state.need,
+    auth: state.auth,
+    isLoading: state.auth.isLoading,
     isAuthenticated: state.auth.isAuthenticated
 });
 

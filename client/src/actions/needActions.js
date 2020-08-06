@@ -1,4 +1,4 @@
-import { GET_NEEDS, ADD_NEED, DELETE_NEED, NEEDS_LOADING, ADD_USER_NEED } from './types';
+import { GET_NEEDS, ADD_NEED, DELETE_NEED, NEEDS_LOADING } from './types';
 import axios from 'axios';
 import { tokenConfig } from './authActions';
 import { returnErrors } from './errorActions';

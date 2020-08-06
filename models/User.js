@@ -20,18 +20,6 @@ const UserSchema = new Schema({
         type: String,
         required: true
     },
-    needs: {
-        type: Array,
-        default: []
-    },
-    offers: {
-        type: Array,
-        default: []
-    },
-    messages: {
-        type: Array,
-        default: []
-    },
     register_date: {
         type: Date,
         default: Date.now
