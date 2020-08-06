@@ -4,10 +4,14 @@ const auth = require('../../middleware/auth');
 
 // Need Model
 const Need = require('../../models/Need');
+
 const { restart } = require('nodemon');
 
+// User Model
+const User = require('../../models/User');
+
 // @route  GET api/needs
-// @desc   Get All Needs
+// @desc   Get All Users' Needs
 // @access Private
 router.get('/', auth, (req, res) => {
     Need.find()

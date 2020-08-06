@@ -24,24 +24,26 @@ class NeedsList extends Component {
         const { needs } = this.props.need;
         return(
             <Container>
-                { this.props.isAuthenticated ? <h4>What Your Neighbors Need</h4> : null }
-                <ListGroup>
+                { this.props.isAuthenticated ? <div>
+                    <h4>What Your Neighbors Need</h4>
+                    <ListGroup>
                     <TransitionGroup className="needs-list">
                         {needs.map(({ _id, name }) => (
                             <CSSTransition key={_id} timeout={500} classNames="fade">
                                 <ListGroupItem>
-                                    { this.props.isAuthenticated ? <span><Button
+                                    <Button
                                         className="remove-btn"
                                         color="danger"
                                         size="sm"
                                         onClick={this.onDeleteClick.bind(this, _id)}
                                         >&times; 
-                                        </Button> {name} </span> : null}
+                                        </Button> {name}
                                 </ListGroupItem>
                             </CSSTransition>
                         ))}
                     </TransitionGroup>
                 </ListGroup>
+                </div> : null }
             </Container>
         );
     }
