@@ -16,7 +16,6 @@ class NeedsList extends Component {
 
     componentDidMount() {
         this.props.getNeeds();
-        console.log(this.props.auth);
     }
 
     onDeleteClick = id => {

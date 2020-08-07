@@ -16,7 +16,9 @@ import PropTypes from 'prop-types';
 class NeedModal extends Component {
     state = {
         modal: false,
-        name: ''
+        name: '',
+        username: '',
+        contact: ''
     }
 
     static propTypes = {
@@ -37,7 +39,9 @@ class NeedModal extends Component {
         e.preventDefault();
         
         const newNeed = {
-            name: this.state.name
+            name: this.state.name,
+            username: this.state.username,
+            contact: this.state.contact
         }
 
         // Add Need via addNeed action
@@ -65,7 +69,7 @@ class NeedModal extends Component {
                     <ModalBody>
                         <Form onSubmit={this.onSubmit}>
                             <FormGroup>
-                                <Label for="need">Need</Label>
+                                <Label for="need">Your Need</Label>
                                 <Input
                                     type="text"
                                     name="name"
@@ -73,6 +77,25 @@ class NeedModal extends Component {
                                     placeholder="Add need"
                                     onChange={this.onChange}
                                 />
+                                <br></br>
+                                <Label for="username">Your Name</Label>
+                                <Input
+                                    type="text"
+                                    name="username"
+                                    id="username"
+                                    placeholder="Enter your name"
+                                    onChange={this.onChange}
+                                />
+                                <br></br>
+                                <Label for="contact">Contact Info</Label>
+                                <Input
+                                    type="text"
+                                    name="contact"
+                                    id="contact"
+                                    placeholder="Enter an email or phone number to be contacted through"
+                                    onChange={this.onChange}
+                                />
+
                                 <Button
                                     color="dark"
                                     style={{marginTop: '2rem'}}

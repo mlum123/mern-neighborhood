@@ -19,7 +19,6 @@ export const getNeeds = () => (dispatch, getState) => {
 };
 
 export const addNeed = need => (dispatch, getState) => {
-    // post new need to all needs collection in general
     axios
         .post('/api/needs', need, tokenConfig(getState))
         .then(res =>

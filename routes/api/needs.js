@@ -25,7 +25,9 @@ router.get('/', auth, (req, res) => {
 router.post('/', auth, (req, res) => {
     const newNeed = new Need({
         name: req.body.name,
-        userId: req.user.id
+        userId: req.user.id,
+        userName: req.body.username,
+        userContact: req.body.contact
     });
 
     newNeed.save().then(need => res.json(need));

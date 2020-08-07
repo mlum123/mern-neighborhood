@@ -14,6 +14,12 @@ const NeedSchema = new Schema({
     userId: {
         type: String,
         required: true
+    },
+    userName: {
+        type: String,
+    },
+    userContact: {
+        type: String
     }
 });
 
