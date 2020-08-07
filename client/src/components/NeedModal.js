@@ -40,6 +40,7 @@ class NeedModal extends Component {
         
         const newNeed = {
             name: this.state.name,
+            details: this.state.details,
             username: this.state.username,
             contact: this.state.contact
         }
@@ -75,6 +76,15 @@ class NeedModal extends Component {
                                     name="name"
                                     id="need"
                                     placeholder="Add need"
+                                    onChange={this.onChange}
+                                />
+                                <br></br>
+                                <Label for="details">Details</Label>
+                                <Input
+                                    type="text"
+                                    name="details"
+                                    id="details"
+                                    placeholder="Add details (method of contact, delivery, etc.)"
                                     onChange={this.onChange}
                                 />
                                 <br></br>

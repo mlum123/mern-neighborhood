@@ -11,15 +11,21 @@ const NeedSchema = new Schema({
         type: Date,
         default: Date.now
     },
+    details: {
+        type: String,
+        required: true
+    },
     userId: {
         type: String,
         required: true
     },
     userName: {
         type: String,
+        required: true
     },
     userContact: {
-        type: String
+        type: String,
+        required: true
     }
 });
 
