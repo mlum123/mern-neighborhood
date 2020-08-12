@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const auth = require('../../middleware/auth');
 const bcrypt = require('bcryptjs');
 const config = require('config');
 const jwt = require('jsonwebtoken');
@@ -58,6 +59,15 @@ router.post('/', (req, res) => {
                 })
             })
         })
+});
+
+// @route  GET api/users
+// @desc   Get Users
+// @access Private
+router.get('/', auth, (req, res) => {
+    User.find()
+        .sort({ register_date: -1 })
+        .then(users => res.json(users))
 });
 
 module.exports = router;
