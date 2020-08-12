@@ -31,7 +31,7 @@ class NeedsList extends Component {
                     <h4>What Your Neighbors Need</h4>
                     <ListGroup>
                     <TransitionGroup className="needs-list">
-                        {needs.filter(need => need.userId !== user._id).map(({ _id, name, details, userName, userContact, userNeighborhood }) => (
+                        {needs.filter(need => need.userId !== user._id).filter(need => need.userNeighborhood == user.neighborhood).map(({ _id, name, details, userName, userContact, userNeighborhood }) => (
                             <CSSTransition key={_id} timeout={500} classNames="fade">
                                 <ListGroupItem>
                                     <strong>{userName} needs {name}</strong>
