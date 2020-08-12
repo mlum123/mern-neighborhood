@@ -26,6 +26,10 @@ const NeedSchema = new Schema({
     userContact: {
         type: String,
         required: true
+    },
+    userNeighborhood: {
+        type: String,
+        required: true
     }
 });
 

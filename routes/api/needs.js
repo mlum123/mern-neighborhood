@@ -28,7 +28,8 @@ router.post('/', auth, (req, res) => {
         details: req.body.details,
         userId: req.user.id,
         userName: req.body.username,
-        userContact: req.body.contact
+        userContact: req.body.contact,
+        userNeighborhood: req.body.neighborhood
     });
 
     newNeed.save().then(need => res.json(need));

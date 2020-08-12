@@ -18,7 +18,8 @@ class NeedModal extends Component {
         modal: false,
         name: '',
         username: '',
-        contact: ''
+        contact: '',
+        neighborhood: ''
     }
 
     static propTypes = {
@@ -42,7 +43,8 @@ class NeedModal extends Component {
             name: this.state.name,
             details: this.state.details,
             username: this.state.username,
-            contact: this.state.contact
+            contact: this.state.contact,
+            neighborhood: this.state.neighborhood
         }
 
         // Add Need via addNeed action
@@ -103,6 +105,15 @@ class NeedModal extends Component {
                                     name="contact"
                                     id="contact"
                                     placeholder="Enter an email or phone number to be contacted through"
+                                    onChange={this.onChange}
+                                />
+                                <br></br>
+                                <Label for="neighborhood">Your Neighborhood</Label>
+                                <Input
+                                    type="text"
+                                    name="neighborhood"
+                                    id="neighborhood"
+                                    placeholder="Enter your neighborhood"
                                     onChange={this.onChange}
                                 />
 
