@@ -39,8 +39,6 @@ class NeedsList extends Component {
                                     <em>Details</em>: {details}
                                     <br></br>
                                     <em>Contact Info</em>: {userContact}
-                                    <br></br>
-                                    <em>Neighborhood</em>: {userNeighborhood}
                                 </ListGroupItem>
                             </CSSTransition>
                         ))}
