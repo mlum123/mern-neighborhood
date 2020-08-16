@@ -25,51 +25,62 @@ class NeedsList extends Component {
     render() {
         const { needs } = this.props.need;
         const { user } = this.props.auth;
+
+        const { userNotLoaded } = this.props.auth;
+        
+        if (userNotLoaded === false) {
+
+            return (
+                <Container>
+                    { this.props.isAuthenticated ? <div>
+                        <h4>What Your Neighbors Need</h4>
+                        <ListGroup>
+                        <TransitionGroup className="needs-list">
+                            {needs.filter(need => need.userId !== user._id).filter(need => need.userNeighborhood == user.neighborhood).map(({ _id, name, details, userName, userContact, userNeighborhood }) => (
+                                <CSSTransition key={_id} timeout={500} classNames="fade">
+                                    <ListGroupItem>
+                                        <strong>{name} <em>({userName})</em></strong>
+                                        <br></br>
+                                        <em>Details</em>: {details}
+                                        <br></br>
+                                        <em>Contact Info</em>: {userContact}
+                                    </ListGroupItem>
+                                </CSSTransition>
+                            ))}
+                        </TransitionGroup>
+                    </ListGroup>
+                    </div> : null }
+                    
+                    <br>
+                    </br>
+                    { this.props.isAuthenticated ? <div>
+                        <h4>Manage Your Needs</h4>
+                        <ListGroup>
+                        <TransitionGroup className="needs-list">
+                            {needs.filter(need => need.userId === user._id).map(({ _id, name }) => (
+                                <CSSTransition key={_id} timeout={500} classNames="fade">
+                                    <ListGroupItem>
+                                        <Button
+                                            className="remove-btn"
+                                            color="danger"
+                                            size="sm"
+                                            onClick={this.onDeleteClick.bind(this, _id)}
+                                            >&times; 
+                                            </Button> {name}
+                                    </ListGroupItem>
+                                </CSSTransition>
+                            ))}
+                        </TransitionGroup>
+                    </ListGroup>
+                    </div> : null }
+                </Container>
+            );
+        }
+        
         return (
-            <Container>
-                { this.props.isAuthenticated ? <div>
-                    <h4>What Your Neighbors Need</h4>
-                    <ListGroup>
-                    <TransitionGroup className="needs-list">
-                        {needs.filter(need => need.userId !== user._id).filter(need => need.userNeighborhood == user.neighborhood).map(({ _id, name, details, userName, userContact, userNeighborhood }) => (
-                            <CSSTransition key={_id} timeout={500} classNames="fade">
-                                <ListGroupItem>
-                                    <strong>{name} <em>({userName})</em></strong>
-                                    <br></br>
-                                    <em>Details</em>: {details}
-                                    <br></br>
-                                    <em>Contact Info</em>: {userContact}
-                                </ListGroupItem>
-                            </CSSTransition>
-                        ))}
-                    </TransitionGroup>
-                </ListGroup>
-                </div> : null }
-                
-                <br>
-                </br>
-                { this.props.isAuthenticated ? <div>
-                    <h4>Manage Your Needs</h4>
-                    <ListGroup>
-                    <TransitionGroup className="needs-list">
-                        {needs.filter(need => need.userId === user._id).map(({ _id, name }) => (
-                            <CSSTransition key={_id} timeout={500} classNames="fade">
-                                <ListGroupItem>
-                                    <Button
-                                        className="remove-btn"
-                                        color="danger"
-                                        size="sm"
-                                        onClick={this.onDeleteClick.bind(this, _id)}
-                                        >&times; 
-                                        </Button> {name}
-                                </ListGroupItem>
-                            </CSSTransition>
-                        ))}
-                    </TransitionGroup>
-                </ListGroup>
-                </div> : null }
-            </Container>
-        );
+            this.props.isAuthenticated ? <div>Refresh the page to see what your neighbors need, and your current requests!</div> : null 
+        )
+
     }
 }
 
