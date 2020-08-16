@@ -9,7 +9,8 @@ import {
     LOGIN_FAIL,
     LOGOUT_SUCCESS,
     REGISTER_SUCCESS,
-    REGISTER_FAIL
+    REGISTER_FAIL,
+    GET_USERS
 } from "./types";
 
 // Check token & load user
@@ -107,3 +108,17 @@ export const tokenConfig = getState => {
     return config;
 
 }
+
+// Get All Users
+export const getUsers = () => (dispatch, getState) => {
+    axios
+        .get('/api/users', tokenConfig(getState))
+        .then(res =>
+            dispatch({
+                type: GET_USERS,
+                payload: res.data
+            }))
+            .catch(err =>
+                dispatch(returnErrors(err.response.data, err.response.status))
+            );
+};

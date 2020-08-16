@@ -63,8 +63,8 @@ router.post('/', (req, res) => {
 
 // @route  GET api/users
 // @desc   Get Users
-// @access Private
-router.get('/', auth, (req, res) => {
+// @access Public
+router.get('/', (req, res) => {
     User.find()
         .sort({ register_date: -1 })
         .then(users => res.json(users))
