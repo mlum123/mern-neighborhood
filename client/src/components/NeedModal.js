@@ -23,7 +23,8 @@ class NeedModal extends Component {
     }
 
     static propTypes = {
-        isAuthenticated: PropTypes.bool
+        isAuthenticated: PropTypes.bool,
+        auth: PropTypes.object.isRequired
     }
 
     toggle = () => {
@@ -42,9 +43,9 @@ class NeedModal extends Component {
         const newNeed = {
             name: this.state.name,
             details: this.state.details,
-            username: this.state.username,
-            contact: this.state.contact,
-            neighborhood: this.state.neighborhood
+            username: this.props.auth.user.name,
+            contact: this.props.auth.user.email,
+            neighborhood: this.props.auth.user.neighborhood
         }
 
         // Add Need via addNeed action
@@ -89,33 +90,6 @@ class NeedModal extends Component {
                                     placeholder="Add details (method of contact, delivery, etc.)"
                                     onChange={this.onChange}
                                 />
-                                <br></br>
-                                <Label for="username">Your Name</Label>
-                                <Input
-                                    type="text"
-                                    name="username"
-                                    id="username"
-                                    placeholder="Enter your name"
-                                    onChange={this.onChange}
-                                />
-                                <br></br>
-                                <Label for="contact">Contact Info</Label>
-                                <Input
-                                    type="text"
-                                    name="contact"
-                                    id="contact"
-                                    placeholder="Enter an email or phone number to be contacted through"
-                                    onChange={this.onChange}
-                                />
-                                <br></br>
-                                <Label for="neighborhood">Your Neighborhood</Label>
-                                <Input
-                                    type="text"
-                                    name="neighborhood"
-                                    id="neighborhood"
-                                    placeholder="Enter your neighborhood"
-                                    onChange={this.onChange}
-                                />
 
                                 <Button
                                     color="dark"
@@ -133,7 +107,8 @@ class NeedModal extends Component {
 
 const mapStateToProps = state => ({
     need: state.need,
-    isAuthenticated: state.auth.isAuthenticated
+    isAuthenticated: state.auth.isAuthenticated,
+    auth: state.auth
 });
 
 export default connect(mapStateToProps, { addNeed })(NeedModal);
