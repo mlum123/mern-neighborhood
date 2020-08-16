@@ -58,7 +58,7 @@ export default function(state = initialState, action) {
             };
         case GET_USERS:
             return {
-                ...state.state,
+                ...state,
                 users: action.payload,
                 usersGotten: true
             }

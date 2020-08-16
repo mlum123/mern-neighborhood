@@ -101,7 +101,6 @@ class RegisterModal extends Component {
                     uniqueNeighborhoods.push(users[i].neighborhood);
                 };
             };
-            console.log(uniqueNeighborhoods);
 
             return (
                 <div>
@@ -159,7 +158,7 @@ class RegisterModal extends Component {
                                         className="mb-3"
                                         onChange={this.onChange} >
                                         {
-                                            uniqueNeighborhoods.map(neighborhood => <option value={neighborhood}>{neighborhood}</option>)
+                                            uniqueNeighborhoods.map(neighborhood => <option key={neighborhood} value={neighborhood}>{neighborhood}</option>)
                                         }
                                         <option>Other</option>
                                     </Input>

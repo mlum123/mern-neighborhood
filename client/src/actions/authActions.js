@@ -110,9 +110,9 @@ export const tokenConfig = getState => {
 }
 
 // Get All Users
-export const getUsers = () => (dispatch, getState) => {
+export const getUsers = () => (dispatch) => {
     axios
-        .get('/api/users', tokenConfig(getState))
+        .get('/api/users')
         .then(res =>
             dispatch({
                 type: GET_USERS,
