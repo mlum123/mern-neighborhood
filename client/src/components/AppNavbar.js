@@ -31,13 +31,13 @@ class AppNavbar extends Component {
     }
 
     render() {
-        const { isAuthenticated, user } = this.props.auth;
+        const { isAuthenticated, user, userNotLoaded } = this.props.auth;
 
         const authLinks = (
             <Fragment>
                 <NavItem>
                     <span className="navbar-text mr-3">
-                        <strong>{ user ? `Welcome to ${user.neighborhood}, ${user.name}!` : "" }</strong>
+                        <strong>{ user ? (userNotLoaded === false ? `Welcome to ${user.neighborhood}, ${user.name}!` : `Welcome, ${user.name}!`) : "" }</strong>
                     </span>
                 </NavItem>
                 <NavItem>
