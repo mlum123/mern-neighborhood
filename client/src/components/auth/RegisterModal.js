@@ -154,9 +154,9 @@ class RegisterModal extends Component {
                                         type="select"
                                         name="neighborhood"
                                         id="neighborhood"
-                                        placeholder="Neighborhood"
                                         className="mb-3"
                                         onChange={this.onChange} >
+                                        <option>Select Neighborhood</option>
                                         {
                                             uniqueNeighborhoods.map(neighborhood => <option key={neighborhood} value={neighborhood}>{neighborhood}</option>)
                                         }
