@@ -87,7 +87,7 @@ class NeedModal extends Component {
                                     type="text"
                                     name="details"
                                     id="details"
-                                    placeholder="Add details (method of contact, delivery, etc.)"
+                                    placeholder="Add details (instructions for delivery / pick-up, etc.)"
                                     onChange={this.onChange}
                                 />
 
@@ -98,6 +98,7 @@ class NeedModal extends Component {
                                 >Add Need</Button>
                             </FormGroup>
                         </Form>
+                        <p><em>The email you used when registering will be used as the method of contact between you and your neighbors.</em></p>
                     </ModalBody>
                 </Modal>
             </div>
