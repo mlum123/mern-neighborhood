@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import {
     Button,
     Modal,
@@ -162,6 +162,19 @@ class RegisterModal extends Component {
                                         }
                                         <option>Other</option>
                                     </Input>
+
+                                    { this.state.neighborhood === "Other" ? 
+                                        (<Fragment>
+                                         <Label for="neighborhood">Add New Neighborhood</Label>
+                                         <Input
+                                            type="neighborhood"
+                                            name="neighborhood"
+                                            id="neighborhood"
+                                            className="mb-3"
+                                            onChange={this.onChange} >
+                                        </Input></Fragment>)
+                                        : null
+                                    }
 
                                     <Button
                                         color="dark"
