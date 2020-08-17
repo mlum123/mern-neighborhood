@@ -99,6 +99,7 @@ class RegisterModal extends Component {
             for (i = 0; i < users.length; i++) {
                 if (!uniqueNeighborhoods.includes(users[i].neighborhood)) {
                     uniqueNeighborhoods.push(users[i].neighborhood);
+                    uniqueNeighborhoods.sort(); // sort neighborhoods alphabetically for registration dropdown
                 };
             };
 
@@ -163,18 +164,15 @@ class RegisterModal extends Component {
                                         <option>Other</option>
                                     </Input>
 
-                                    { this.state.neighborhood === "Other" ? 
-                                        (<Fragment>
-                                         <Label for="neighborhood">Add New Neighborhood</Label>
-                                         <Input
-                                            type="neighborhood"
-                                            name="neighborhood"
-                                            id="neighborhood"
-                                            className="mb-3"
-                                            onChange={this.onChange} >
-                                        </Input></Fragment>)
-                                        : null
-                                    }
+                                    
+                                    <Label for="neighborhood">Don't See Your Neighborhood?<br></br>Choose Other and Add New Neighborhood Here</Label>
+                                    <Input
+                                        type="neighborhood"
+                                        name="neighborhood"
+                                        id="neighborhood"
+                                        className="mb-3"
+                                        onChange={this.onChange} >
+                                    </Input>
 
                                     <Button
                                         color="dark"
