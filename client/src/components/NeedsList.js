@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, ListGroup, ListGroupItem, Button } from 'reactstrap';
+import { Container, ListGroup, ListGroupItem, Button, Badge } from 'reactstrap';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { connect } from 'react-redux';
 import { getNeeds, deleteNeed } from '../actions/needActions';
@@ -39,7 +39,9 @@ class NeedsList extends Component {
                             {needs.filter(need => need.userId !== user._id).filter(need => need.userNeighborhood === user.neighborhood).map(({ _id, name, details, userName, userContact, userNeighborhood }) => (
                                 <CSSTransition key={_id} timeout={500} classNames="fade">
                                     <ListGroupItem>
-                                        <strong>{name} <em>({userName})</em></strong>
+                                        <Badge classNames="badge">{userName}</Badge>
+                                        <br></br>
+                                        <strong>{name}</strong>
                                         <br></br>
                                         <em>Details</em>: {details}
                                         <br></br>
