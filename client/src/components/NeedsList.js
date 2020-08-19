@@ -39,9 +39,9 @@ class NeedsList extends Component {
                             {needs.filter(need => need.userId !== user._id).filter(need => need.userNeighborhood === user.neighborhood).map(({ _id, name, details, userName, userContact, userNeighborhood }) => (
                                 <CSSTransition key={_id} timeout={500} classNames="fade">
                                     <ListGroupItem>
-                                        <Badge classNames="badge">{userName}</Badge>
+                                        <Badge classNames="badge">{name}</Badge>
                                         <br></br>
-                                        <strong>{name}</strong>
+                                        <strong>{userName}</strong>
                                         <br></br>
                                         <em>Details</em>: {details}
                                         <br></br>
